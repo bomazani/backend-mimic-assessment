@@ -43,31 +43,48 @@ columns, so the output looks better.
 
 """
 
+__author__ = "bomazani"
+
+
 import random
 import sys
 
 
 def mimic_dict(filename):
     """Returns mimic dict mapping each word to list of words which follow it."""
-    # +++your code here+++
-    raise NotImplementedError("Get to Work!")
+    """ Creates a dictionary with each unique word as the keys, 
+    and values = each word that immediately follows the key(including duplicates)."""
+    with open(filename, "r") as f:
+        file_split = f.read().split()
+        key_dict = {}
+        prev_string = ''
+        for word in file_split:
+                if prev_string not in key_dict:
+                    key_dict[prev_string]=[word]
+                else:
+                    key_dict[prev_string].append(word)
+                prev_string = word
 
+    return(key_dict)
+mimic_dict("alice.txt")
+# # raise NotImplementedError("Get to Work!")
+   
 
 def print_mimic(mimic_dict, word):
     """Given mimic dict and start word, prints 200 random words."""
-    # +++your code here+++
+#     # +++your code here+++
     raise NotImplementedError("Get to Work!")
 
 
-# Provided main(), calls mimic_dict() and mimic()
-def main():
-    if len(sys.argv) != 2:
-        print 'usage: python mimic.py file-to-read'
-        sys.exit(1)
+# # Provided main(), calls mimic_dict() and mimic()
+# def main():
+#     if len(sys.argv) != 2:
+#         print 'usage: python mimic.py file-to-read'
+#         sys.exit(1)
 
-    d = mimic_dict(sys.argv[1])
-    print_mimic(d, '')
+#     d = mimic_dict(sys.argv[1])
+#     print_mimic(d, '')
 
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()
