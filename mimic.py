@@ -56,35 +56,44 @@ def mimic_dict(filename):
     and values = each word that immediately follows the key(including duplicates)."""
     with open(filename, "r") as f:
         file_split = f.read().split()
-        key_dict = {}
+        word_dict = {}
         prev_string = ''
         for word in file_split:
-                if prev_string not in key_dict:
-                    key_dict[prev_string]=[word]
-                else:
-                    key_dict[prev_string].append(word)
-                prev_string = word
+            if prev_string not in word_dict:
+                word_dict[prev_string] = [word]
+            else:
+                word_dict[prev_string].append(word)
+            prev_string = word
 
-    return(key_dict)
-mimic_dict("alice.txt")
+    return word_dict
+
+
+
 # # raise NotImplementedError("Get to Work!")
-   
+
 
 def print_mimic(mimic_dict, word):
-    """Given mimic dict and start word, prints 200 random words."""
-#     # +++your code here+++
-    raise NotImplementedError("Get to Work!")
+    """Given mimic dict and start word, prints 200 random words."""  
+    for _ in range(200):
+        print word,
+        next_word_list = mimic_dict.get(word)
+        if not next_word_list:
+            next_word_list = mimic_dict['']
+        word = random.choice(next_word_list)
+
+    
+    # raise NotImplementedError("Get to Work!")
+   
+
+# Provided main(), calls mimic_dict() and mimic()
+def main():
+    if len(sys.argv) != 2:
+        print 'usage: python mimic.py file-to-read'
+        sys.exit(1)
+
+    d = mimic_dict(sys.argv[1])
+    print_mimic(d, '')
 
 
-# # Provided main(), calls mimic_dict() and mimic()
-# def main():
-#     if len(sys.argv) != 2:
-#         print 'usage: python mimic.py file-to-read'
-#         sys.exit(1)
-
-#     d = mimic_dict(sys.argv[1])
-#     print_mimic(d, '')
-
-
-# if __name__ == '__main__':
-#     main()
+if __name__ == '__main__':
+    main()
