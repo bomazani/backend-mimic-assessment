@@ -52,8 +52,6 @@ import sys
 
 def mimic_dict(filename):
     """Returns mimic dict mapping each word to list of words which follow it."""
-    """ Creates a dictionary with each unique word as the keys, 
-    and values = each word that immediately follows the key(including duplicates)."""
     with open(filename, "r") as f:
         file_split = f.read().split()
         word_dict = {}
@@ -64,12 +62,7 @@ def mimic_dict(filename):
             else:
                 word_dict[prev_string].append(word)
             prev_string = word
-
     return word_dict
-
-
-
-# # raise NotImplementedError("Get to Work!")
 
 
 def print_mimic(mimic_dict, word):
@@ -82,9 +75,6 @@ def print_mimic(mimic_dict, word):
         word = random.choice(next_word_list)
 
     
-    # raise NotImplementedError("Get to Work!")
-   
-
 # Provided main(), calls mimic_dict() and mimic()
 def main():
     if len(sys.argv) != 2:
